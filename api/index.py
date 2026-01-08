@@ -48,7 +48,12 @@ if _INSTALOADER_USERNAME and _INSTALOADER_SESSION_FILE:
 @app.get("/health")
 def health_check():
     return jsonify({"status": "ok"})
-
+    
+@app.route("/privacy_policy")
+def privacy_policy():
+    with open("./privacy_policy.html", "rb") as file:
+        privacy_policy_html = file.read()
+    return privacy_policy_html
 
 @app.get("/media/<string:shortcode>")
 def media_lookup(shortcode: str):
